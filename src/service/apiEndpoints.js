@@ -5,10 +5,18 @@
 
 // combine getAllCoins and getAllCoinsByVolume api for table
 export const CoinDetails = {
+    // getAllCoins: {
+    //     api: 'coinParams.json',
+    //     method: 'get',
+    //     baseURL: 'normal',
+    // },
     getAllCoins: {
-        api: 'coinParams.json',
+        api: '',
         method: 'get',
-        baseURL: 'normal',
+        baseURL: 'coingecko',
+        params:{
+            vs_currency:"usd"
+        }
     },
     getAllCoinsByVolume:{
         api: 'getTickerWithVolume',
@@ -19,5 +27,6 @@ export const CoinDetails = {
         api: '',
         method: '',
         baseURL: '', 
-    }
+    },
+    
 }
