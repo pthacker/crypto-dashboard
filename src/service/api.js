@@ -23,15 +23,15 @@ export const api = async function ({
   return await new Promise(async (resolve, reject) => {
     let APIInstance = axiosInstance;
     // setting token
-console.log(`  ${method},
-${api},
-${body},
-${params},
-${status},
-${token},
-${baseURL},
-${endPoint},
-${timeout},`)
+// console.log(`  ${method},
+// ${api},
+// ${body},
+// ${params},
+// ${status},
+// ${token},
+// ${baseURL},
+// ${endPoint},
+// ${timeout},`)
     APIInstance.defaults.timeout = timeout;
     let arg = body ? [body, { params }] : [{ params }];
     // //console.log("arg", arg);
@@ -55,7 +55,7 @@ ${timeout},`)
 };
 
 const statusHelper = (status, data) => {
-  console.log('statusHelper',status,data)
+  // console.log('statusHelper',status,data)
   try {
     if (status) {
       return {

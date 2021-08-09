@@ -42,7 +42,7 @@ axiosInstance.interceptors.response.use(
         // }else{
         //     return Promise.reject(error)
         // }
-        const {data} = error.response || {};
+        const {data = {}} = error.response || {};
         const { message = 'Some error occurred'} = data;
         Toast(message);
         return Promise.reject(data)

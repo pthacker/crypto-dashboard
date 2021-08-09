@@ -7,7 +7,7 @@ export const getAllCoins = () => async (dispatch) => {
       const res = await API({...CoinDetails.getAllCoins})
       dispatch({
         type: actionTypes.GET_ALL_COINS,
-        payload: res.data,
+        payload: res,
       });
   
       return Promise.resolve(res.data);
@@ -15,4 +15,41 @@ export const getAllCoins = () => async (dispatch) => {
       return Promise.reject(err);
     }
   };
+
+export const filterByCoinName = (value) => async (dispatch) => {
+    // try {
+    //   const res = await API({...CoinDetails.getAllCoins})
+      dispatch({
+        type: actionTypes.FILTER_BY_COIN_NAME,
+        userEnteredValue: value,
+      });
+      return Promise.resolve();
+    // } catch (err) {
+    //   return Promise.reject(err);
+    // }
+  };
+
+export const filterByCoinPrice = () => async (dispatch) => {
+      dispatch({
+        type: actionTypes.FILTER_BY_COIN_PRICE,
+      });
+      return Promise.resolve();
+  };
+
+  export const filterByCoinVolume = () => async (dispatch) => {
+    dispatch({
+      type: actionTypes.FILTER_BY_COIN_VOLUME,
+    });
+    return Promise.resolve();
+};
+
+export const filterByCoinPercentChange = () => async (dispatch) => {
+    dispatch({
+      type: actionTypes.FILTER_BY_PRICE_PERCENT_CHANGE,
+    });
+    return Promise.resolve();
+};
+
+
+
   
