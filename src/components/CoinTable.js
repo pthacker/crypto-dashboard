@@ -7,7 +7,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import Toast from "./Common/Toast";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllCoins,filterByCoinName,filterByCoinPrice,filterByCoinVolume,filterByCoinPercentChange } from "../redux/actions/coinsListAction";
@@ -15,7 +14,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { actionTypes } from "../redux/actionTypes";
-import MenuItem from '@material-ui/core/MenuItem';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
