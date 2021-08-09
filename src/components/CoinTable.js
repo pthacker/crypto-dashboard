@@ -56,12 +56,20 @@ const CoinTable = () => {
     name:'',
     key:''
   })
-  const [filterName, setfilterName] = useState('')
+  const [filterName, setfilterName] = useState('');
+  const [intervalId, setintervalId] = useState(0)
   const classes = useStyles();
   useEffect(() => {
     dispatch(getAllCoins());
   }, []);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     dispatch(getAllCoins());
+  //   }, 3000);
+  //   setInterval(interval)
+  //   return () => clearInterval(interval);
+  // }, []);
   const data = useSelector((state) => {
     // console.log("useSelector", state);
     return state.coinReducer.filteredCoinList;
