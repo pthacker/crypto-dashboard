@@ -57,7 +57,7 @@ const CoinTable = () => {
     key:''
   })
   const [filterName, setfilterName] = useState('');
-  const [intervalId, setintervalId] = useState(0)
+  const [isInterval, setIsInterval] = useState(true);
   const classes = useStyles();
   useEffect(() => {
     dispatch(getAllCoins());
@@ -70,6 +70,17 @@ const CoinTable = () => {
   //   setInterval(interval)
   //   return () => clearInterval(interval);
   // }, []);
+  useEffect(() => {
+    let interval;
+    if (isInterval) {
+      interval = setInterval(() => {
+        dispatch(getAllCoins());  
+      }, 3000);
+    } else {
+       clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [isInterval]);
   const data = useSelector((state) => {
     // console.log("useSelector", state);
     return state.coinReducer.filteredCoinList;
@@ -77,6 +88,10 @@ const CoinTable = () => {
 
   const handleInputChange = (e)=>{
     console.log('handlechange',e.target.value)
+    setIsInterval(false)
+    if(e.target.value.length===0){
+      setIsInterval(true)
+    }
     const value = e.target.value
     // if(valueEntered){
       dispatch(filterByCoinName(value))
@@ -85,6 +100,7 @@ const CoinTable = () => {
 
   const handleFilterChange = (e)=>{
     console.log('handleFilterChange ',e.target.value);
+    setIsInterval(false)
     const filter_by = e.target.value;
     switch(filter_by){
       case actionTypes.FILTER_BY_COIN_PRICE:
@@ -102,6 +118,7 @@ const CoinTable = () => {
         default:
           setfilterName('')
           dispatch(getAllCoins());
+          setIsInterval(true)
           break;
     }
   }
