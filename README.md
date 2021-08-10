@@ -4,6 +4,10 @@
 #### Features
 
 1.Real time data by integrating open api from <a href='https://www.coingecko.com/en/api/documentation'>CoinGecko</a>
+<br>
+ -->The API is called every 3 seconds
+ <br/>
+ -->The setInterval is cancelled if any filter or search by name functionality is used
 
 2.The project is completely bases on hooks (i.e react hooks, redux hooks etc)
 
