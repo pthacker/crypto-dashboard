@@ -155,7 +155,7 @@ const CoinTable = () => {
   <Table  aria-label="customized table">
     <TableHead>
       <TableRow>
-        <StyledTableCell >Coin Name</StyledTableCell>
+        <StyledTableCell style={{marginLeft:'0.5rem'}} colspan="2" >Coin Name</StyledTableCell>
         <StyledTableCell align="right">Price $</StyledTableCell>
         <StyledTableCell align="right">24H&nbsp;% </StyledTableCell>
         <StyledTableCell align="right">24H&nbsp;HIGH</StyledTableCell>
@@ -165,7 +165,10 @@ const CoinTable = () => {
     </TableHead>
     <TableBody>
        {data && data.map((row) => (
-        <StyledTableRow key={row.name}>
+        <StyledTableRow key={row.id}>
+          <StyledTableCell component="th" scope="row" >
+               <img style={{height:'1rem',width:'1rem'}} src={row.image} alt={'Coin icon'}/>
+               </StyledTableCell>
           <StyledTableCell component="th" scope="row" >
             {row.name}
           </StyledTableCell>
