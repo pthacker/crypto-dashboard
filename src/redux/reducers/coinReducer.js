@@ -4,7 +4,8 @@ import {actionTypes} from '../actionTypes';
 const initialState = {
     coinsList : [],
     appliedFilters:[],
-    filteredCoinList:[]
+    filteredCoinList:[],
+    progressState:true
 }
 
 export const coinReducer = (state = initialState,action)=>{
@@ -13,7 +14,8 @@ export const coinReducer = (state = initialState,action)=>{
             return{
                 ...state,
                 coinsList:action.payload,
-                filteredCoinList:action.payload
+                filteredCoinList:action.payload,
+                progressState:false
             }
         case actionTypes.FILTER_BY_COIN_NAME:
         const oldStateCopy = Object.assign({},state);
@@ -31,7 +33,8 @@ export const coinReducer = (state = initialState,action)=>{
             return{
                 ...state,
                 // // coinsList:newCoinList
-                filteredCoinList:[...oldStateCopy.coinsList]
+                filteredCoinList:[...oldStateCopy.coinsList],
+                progressState:false
                 // ...oldStateCopy
             }
         case actionTypes.FILTER_BY_COIN_PRICE:
@@ -47,7 +50,8 @@ export const coinReducer = (state = initialState,action)=>{
             });
             return {
                 ...state,
-                filteredCoinList:[...newList]
+                filteredCoinList:[...newList],
+                progressState:false
             }
             case actionTypes.FILTER_BY_COIN_VOLUME:
             console.log('FILTER_BY_COIN_VOLUME')
@@ -62,7 +66,8 @@ export const coinReducer = (state = initialState,action)=>{
             });
             return {
                 ...state,
-                filteredCoinList:[...newListforVolume]
+                filteredCoinList:[...newListforVolume],
+                progressState:false
             }
             case actionTypes.FILTER_BY_PRICE_PERCENT_CHANGE:
                 console.log('FILTER_BY_COIN_VOLUME')
@@ -77,7 +82,8 @@ export const coinReducer = (state = initialState,action)=>{
                 });
                 return {
                     ...state,
-                    filteredCoinList:[...newListforPercent]
+                    filteredCoinList:[...newListforPercent],
+                    progressState:false
                 }
         default:
             return state

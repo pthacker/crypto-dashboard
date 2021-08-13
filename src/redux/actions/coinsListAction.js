@@ -50,6 +50,19 @@ export const filterByCoinPercentChange = () => async (dispatch) => {
     return Promise.resolve();
 };
 
+export const getCoinsByPage = (page) => async(dispatch)=>{
+  try{
+    CoinDetails.getCoinsByPage.params.page = page;
+    const response = await API({...CoinDetails.getCoinsByPage});
+    dispatch({
+      type:actionTypes.GET_ALL_COINS,
+      payload:response
+    })
+  }catch(err){
+    return Promise.reject(err);
+  }
+}
+
 
 
   

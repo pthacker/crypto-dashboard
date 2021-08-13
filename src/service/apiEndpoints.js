@@ -28,5 +28,13 @@ export const CoinDetails = {
         method: '',
         baseURL: '', 
     },
+    getCoinsByPage:{
+        api: '',
+        method: 'get',
+        baseURL: 'coingecko',
+        params:{
+            vs_currency:"usd"
+        }
+    }
     
 }
