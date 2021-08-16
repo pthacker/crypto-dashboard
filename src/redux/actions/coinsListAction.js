@@ -1,13 +1,20 @@
 import { actionTypes } from "../actionTypes";
 import { api as API } from "../../service/api";
 import { CoinDetails } from "../../service/apiEndpoints";
+import { getLocalStorage } from '../../service/localStorage';
 
 export const getAllCoins = () => async (dispatch) => {
     try {
       const res = await API({...CoinDetails.getAllCoins})
+      const favorites =  getLocalStorage('favorites');
       dispatch({
         type: actionTypes.GET_ALL_COINS,
-        payload: res,
+        // payload:res, 
+        payload:
+        {
+          data:res,
+          favorites:favorites
+        }
       });
   
       return Promise.resolve(res.data);
@@ -54,14 +61,41 @@ export const getCoinsByPage = (page) => async(dispatch)=>{
   try{
     CoinDetails.getCoinsByPage.params.page = page;
     const response = await API({...CoinDetails.getCoinsByPage});
+    const favorites =  getLocalStorage('favorites');
     dispatch({
       type:actionTypes.GET_ALL_COINS,
-      payload:response
+      payload:
+      {
+        data:response,
+        favorites:favorites
+      }
     })
   }catch(err){
     return Promise.reject(err);
   }
 }
+
+
+export const addToFavorite = (coinId,index)=> async(dispatch)=>{
+  dispatch({
+    type:actionTypes.ADD_COIN_TO_FAVORITES,
+    payload:{
+      coinId,
+      index
+    }
+  })
+}
+
+export const removeFromFavorite = (coinId,index)=> async(dispatch)=>{
+  dispatch({
+    type:actionTypes.REMOVE_COIN_FROM_FAVORITES,
+    payload:{
+      coinId,
+      index
+    }
+  })
+}
+
 
 
 

@@ -10,8 +10,10 @@ import {
   Paper,
   InputLabel,
   FormControl,
-  Select,
+  Select
 } from "@material-ui/core";
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Toast from "./Common/Toast";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -21,11 +23,17 @@ import {
   filterByCoinVolume,
   filterByCoinPercentChange,
   getCoinsByPage,
+  addToFavorite,
+  removeFromFavorite,
+  addFavoritesToRedux
 } from "../redux/actions/coinsListAction";
 import { actionTypes } from "../redux/actionTypes";
 import { usePagination } from "./Common/Pagination";
 import Pagination from "./Common/Pagination";
 import Progressbar from "./Common/Progressbar";
+import {getLocalStorage,removeFromLocalStorage,setLocalStorage} from '../service/localStorage';
+import { constants } from '../utilities/constants';
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -138,7 +146,28 @@ const CoinTable = () => {
 
   useEffect(() => {
     dispatch(getCoinsByPage(currentPage));
+    // const favoriteCoinsList = getLocalStorage('favorites');
+    // console.log('effect',favoriteCoinsList)
+    // dispatch(addFavoritesToRedux(favoriteCoinsList || []))
   }, [currentPage]);
+
+  const handelFavoriteClick = (coinId,index,favorite)=>{
+    console.log('handelFavoriteClick',coinId,index,favorite)
+    if(favorite){
+      // 1. add / remove to local storage
+      removeFromLocalStorage('favorites',coinId,index,constants.REMOVE_SINGLE_COIN);
+      // 2. call action
+      dispatch(removeFromFavorite(coinId,index))
+    }else{
+      // 1. add / remove to local storage
+      setLocalStorage('favorites',coinId)
+    // 2. call action
+    dispatch(addToFavorite(coinId,index))
+    }
+
+
+  }
+
 
   return (
     <TableContainer component={Paper} className={classes.customWidth}>
@@ -184,7 +213,7 @@ const CoinTable = () => {
         </TableHead>
         <TableBody>
           {data &&
-            data.map((row) => (
+            data.map((row,index) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
                   <img
@@ -207,6 +236,9 @@ const CoinTable = () => {
                 <StyledTableCell align="right">{row.low_24h}</StyledTableCell>
                 <StyledTableCell align="right">
                   {row.total_supply}
+                </StyledTableCell>
+                <StyledTableCell align="right" onClick={()=>handelFavoriteClick(row.id,index,row?.favorite)}>
+                { row?.favorite ? <FavoriteIcon/> : <FavoriteBorderIcon/>}
                 </StyledTableCell>
               </StyledTableRow>
             ))}
