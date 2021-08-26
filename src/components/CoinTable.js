@@ -33,12 +33,13 @@ import Pagination from "./Common/Pagination";
 import Progressbar from "./Common/Progressbar";
 import {getLocalStorage,removeFromLocalStorage,setLocalStorage} from '../service/localStorage';
 import { constants } from '../utilities/constants';
+import colorPalette from "../styles/colorPalette";
 
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: "black",
-    color: "white",
+    backgroundColor: colorPalette.complementaryColor,
+    color: colorPalette.textBlack,
   },
   body: {
     fontSize: 14,
@@ -47,16 +48,16 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles((theme) => ({
   root: {
-    "&:nth-of-type(odd)": {
-      backgroundColor: "grey",
-    },
+    // "&:nth-of-type(odd)": {
+    //   backgroundColor: "grey",
+    // },
   },
 }))(TableRow);
 
 const useStyles = makeStyles({
   customWidth: {
     "& .MuiTableContainer-root": {
-      width: "80%",
+      width: "100%",
     },
   },
   formControl: {
@@ -171,10 +172,10 @@ const CoinTable = () => {
 
   return (
     <TableContainer component={Paper} className={classes.customWidth}>
-      <div
+      {/* <div
         style={{
           display: "flex",
-          background: "black",
+          background: colorPalette.complementaryColor,
           justifyContent: "flex-end",
         }}
       >
@@ -197,7 +198,7 @@ const CoinTable = () => {
           placeholder="search by coin name"
           style={{ width: "15rem", height: "2rem" }}
         />
-      </div>
+      </div> */}
       <Table aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -209,6 +210,7 @@ const CoinTable = () => {
             <StyledTableCell align="right">24H&nbsp;HIGH</StyledTableCell>
             <StyledTableCell align="right">24H&nbsp;LOW</StyledTableCell>
             <StyledTableCell align="right">TOTAL SUPPLY</StyledTableCell>
+            <StyledTableCell align="right"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

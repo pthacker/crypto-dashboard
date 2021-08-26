@@ -19,7 +19,7 @@ export const coinReducer = (state = initialState,action)=>{
             // cross check with favorites list in local storage
             const favorites = action?.payload?.favorites;
             const newListAddfavToRedux = action.payload.data.map(singleCoinObj=>{
-                if(favorites.includes(singleCoinObj.id)) {
+                if(favorites?.includes(singleCoinObj.id)) {
                     singleCoinObj.favorite = true
                 }
                 return singleCoinObj
