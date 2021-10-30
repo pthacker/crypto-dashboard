@@ -96,6 +96,28 @@ export const removeFromFavorite = (coinId,index)=> async(dispatch)=>{
   })
 }
 
+export const getCoinsByIdList = (favoritesIdList) => async(dispatch)=>{
+  const params = {
+      vs_currency:"usd"
+  }
+  params.ids = [...favoritesIdList]
+  console.log('params',params)
+  try {
+    const res = await API({...CoinDetails.getCoinsByIdList,'params':params})
+    dispatch({
+      type:actionTypes.GET_FAVORITE_COINS,
+      payload:{
+        favoritesIdList:res
+      }
+    })
+
+    return Promise.resolve(res.data);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+
+}
+
 
 
 

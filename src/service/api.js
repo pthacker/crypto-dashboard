@@ -23,19 +23,22 @@ export const api = async function ({
   return await new Promise(async (resolve, reject) => {
     let APIInstance = axiosInstance;
     // setting token
-// console.log(`  ${method},
-// ${api},
-// ${body},
-// ${params},
-// ${status},
-// ${token},
-// ${baseURL},
-// ${endPoint},
-// ${timeout},`)
+console.log(`  ${method},
+${api},
+${body},
+${params},
+${status},
+${token},
+${baseURL},
+${endPoint},
+${timeout},`)
+console.log('params.id',params)
     APIInstance.defaults.timeout = timeout;
+    const finalParams = new URLSearchParams(params)
+    console.log('finalparams',finalParams)
     let arg = body ? [body, { params }] : [{ params }];
-    // //console.log("arg", arg);
-    console.log('microURL',`${getMicroServiceURL(baseURL, endPoint)}${api}`)
+    console.log("arg", ...arg);
+    console.log('microURL',`${getMicroServiceURL(baseURL, endPoint)}${api}`,APIInstance[method])
     APIInstance[method](
       `${getMicroServiceURL(baseURL, endPoint)}${api}`,
       ...arg

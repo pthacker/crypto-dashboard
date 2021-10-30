@@ -15,6 +15,7 @@ import {
 import "./index.css";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import CoinTable from "../../components/CoinTable";
+import FavoriteTable from "../../components/FavoriteTable";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -169,7 +170,7 @@ const Dashboard = () => {
         </div>
       </AppBar>
       <TabPanel value={value} index={0}>
-        favorites
+        <FavoriteTable/>
       </TabPanel>
       <TabPanel
         className={classes.tabPanelPadding}

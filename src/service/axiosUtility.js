@@ -14,13 +14,14 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
         // this function executes if the request is valid/successful
     (request)=>{
-
+        console.log('req req',request)
     // handle adding headers to request before making call
 
 return request;
     },
      // this function executes if the request is invalid
     (error)=>{
+        console.log('req error',error)
       return  Promise.reject(error);
     }
 )
@@ -44,7 +45,7 @@ axiosInstance.interceptors.response.use(
         // }
         const {data = {}} = error.response || {};
         const { message = 'Some error occurred'} = data;
-        Toast(message);
+        // Toast(message);
         return Promise.reject(data)
     }
 )

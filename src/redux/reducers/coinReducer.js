@@ -122,6 +122,9 @@ export const coinReducer = (state = initialState,action)=>{
                     filteredCoinList:[...newListRemoveFromFav],
                     progressState:false
                 }
+            case actionTypes.GET_FAVORITE_COINS:
+                console.log(action.payload.favoritesIdList)
+                return state;
 
         default:
             return state

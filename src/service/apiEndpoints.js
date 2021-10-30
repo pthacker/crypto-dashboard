@@ -35,6 +35,11 @@ export const CoinDetails = {
         params:{
             vs_currency:"usd"
         }
+    },
+    getCoinsByIdList:{
+        api: 'coins/markets',
+        method: 'get',
+        baseURL: 'coingecko',
     }
     
 }
